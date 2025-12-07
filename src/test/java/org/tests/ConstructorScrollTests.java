@@ -1,5 +1,6 @@
 package org.tests;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.example.pageobject.Constructor;
 import org.junit.Rule;
@@ -13,6 +14,7 @@ public class ConstructorScrollTests {
 
     @Test
     @DisplayName("Скролл вниз активирует вкладки Соусы и Начинки")
+    @Description("Проверяет, что при прокрутке страницы вниз последовательно активируются вкладки 'Соусы' и 'Начинки'")
     public void testScrollDown() {
 
         Constructor constructor = factory.getConstructorPage();
@@ -30,6 +32,7 @@ public class ConstructorScrollTests {
 
     @Test
     @DisplayName("Скролл вверх активирует вкладки Начинки, Соусы и Булки")
+    @Description("Проверяет, что при прокрутке страницы вверх элементы списка активируют вкладки 'Начинки', затем 'Соусы' и 'Булки'")
     public void testScrollUp() {
 
         Constructor constructor = factory.getConstructorPage();

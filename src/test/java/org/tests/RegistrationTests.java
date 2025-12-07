@@ -1,5 +1,6 @@
 package org.tests;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.example.pageobject.LoginPage;
 import org.example.pageobject.RegistrationPage;
@@ -22,6 +23,7 @@ public class RegistrationTests {
 
     @Test
     @DisplayName("Успешная регистрация")
+    @Description("Проверяет, что пользователь может успешно зарегистрироваться с корректными данными. " + "После регистрации должна отображаться форма входа.")
     public void testSuccessfulRegistration() {
         LoginPage main = factory.getMainPage();
         RegistrationPage reg = factory.getRegistrationPage();
@@ -38,6 +40,7 @@ public class RegistrationTests {
 
     @Test
     @DisplayName("Ошибка регистрации при некоррекном пароле")
+    @Description("Проверяет, что при регистрации с некорректным (слишком коротким) паролем отображается ошибка " + "'Некорректный пароль'.")
     public void testRegistrationWrongPassword() {
         LoginPage main = factory.getMainPage();
         RegistrationPage reg = factory.getRegistrationPage();

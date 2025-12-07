@@ -1,5 +1,6 @@
 package org.tests;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.example.pageobject.Constructor;
 import org.junit.Rule;
@@ -12,6 +13,8 @@ public class ConstructorTabsClickTest {
 
     @Test
     @DisplayName("Переход от 'Соусов' к 'Булкам'")
+    @Description("Проверяет, что после выбора вкладки 'Соусы' пользователь может переключиться на вкладку 'Булки'," +
+            " и она становится активной")
     public void testSaucesToBuns() {
         Constructor constructor = factory.getConstructorPage();
 
@@ -25,6 +28,8 @@ public class ConstructorTabsClickTest {
 
     @Test
     @DisplayName("Переход от 'Начинок' к 'Булкам'")
+    @Description("Проверяет, что при выборе вкладки 'Начинки' пользователь может перейти на вкладку 'Булки'," +
+            " и она корректно активируется.")
     public void testFillingsToBuns() {
         Constructor constructor = factory.getConstructorPage();
 
@@ -39,6 +44,8 @@ public class ConstructorTabsClickTest {
 
     @Test
     @DisplayName("Переход от 'Булок' к 'Соусам'")
+    @Description("Проверяет корректность переключения вкладок: после выбора 'Булки' пользователь может перейти" +
+            " на вкладку 'Соусы', и она становится активной.")
     public void testBunsToSauces() {
 
         Constructor constructor = factory.getConstructorPage();
@@ -53,6 +60,8 @@ public class ConstructorTabsClickTest {
     }
     @Test
     @DisplayName("Переход от 'Булок' к 'Начинкам'")
+    @Description("Проверяет, что после выбора вкладки 'Булки' пользователь может переключиться на вкладку 'Начинки'," +
+            " и активная вкладка обновляется корректно.")
     public void testBunsToFillings() {
 
         Constructor constructor = factory.getConstructorPage();

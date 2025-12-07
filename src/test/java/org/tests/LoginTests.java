@@ -1,5 +1,6 @@
 package org.tests;
 
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.example.pageobject.LoginPage;
 import org.junit.After;
@@ -19,6 +20,8 @@ public class LoginTests {
 
     @Test
     @DisplayName("Вход по кнопке 'Войти в аккаунт' на главной")
+    @Description("Проверяет возможность авторизации через кнопку 'Войти в аккаунт' на главной странице. " +
+            "После успешного входа должен отображаться заголовок конструктора бургеров.")
     public void testLoginFromMainPage() {
         LoginPage main = factory.getMainPage();
 
@@ -33,6 +36,8 @@ public class LoginTests {
 
     @Test
     @DisplayName("Вход через кнопку 'Личный кабинет'")
+    @Description("Проверяет, что пользователь может перейти к форме авторизации через кнопку 'Личный кабинет' и успешно войти. " +
+            "После входа отображается главная страница конструктора бургеров.")
     public void testLoginFromPersonalAccountButton() {
         LoginPage main = factory.getMainPage();
 
@@ -48,6 +53,8 @@ public class LoginTests {
 
     @Test
     @DisplayName("Вход через кнопку в форме регистрации")
+    @Description("Проверяет, что со страницы регистрации можно перейти на форму авторизации по ссылке 'Войти' " +
+            "и успешно выполнить вход. После авторизации открывается главная страница конструктора.")
     public void testLoginFromRegistrationForm() {
         LoginPage main = factory.getMainPage();
 
@@ -65,6 +72,8 @@ public class LoginTests {
 
     @Test
     @DisplayName("Вход через кнопку в форме восстановления пароля")
+    @Description("Проверяет возможность перехода к форме авторизации со страницы восстановления пароля " +
+            "и успешный вход в систему. После входа должна отображаться главная страница конструктора бургеров.")
     public void testLoginFromPasswordRestoreForm() {
         LoginPage main = factory.getMainPage();
 
