@@ -2,7 +2,7 @@ package org.tests;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
-import org.example.pageobject.Constructor;
+import org.example.pageobject.ConstructorPage;
 import org.junit.Rule;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -17,7 +17,7 @@ public class ConstructorScrollTests {
     @Description("Проверяет, что при прокрутке страницы вниз последовательно активируются вкладки 'Соусы' и 'Начинки'")
     public void testScrollDown() {
 
-        Constructor constructor = factory.getConstructorPage();
+        ConstructorPage constructor = factory.getConstructorPage();
 
         constructor.scrollTo("Соусы");
         constructor.waitForActiveTab("Соусы");
@@ -35,7 +35,7 @@ public class ConstructorScrollTests {
     @Description("Проверяет, что при прокрутке страницы вверх элементы списка активируют вкладки 'Начинки', затем 'Соусы' и 'Булки'")
     public void testScrollUp() {
 
-        Constructor constructor = factory.getConstructorPage();
+        ConstructorPage constructor = factory.getConstructorPage();
 
         constructor.scrollTo("Начинки");
         constructor.waitForActiveTab("Начинки");

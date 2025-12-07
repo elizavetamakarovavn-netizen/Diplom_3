@@ -10,11 +10,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import static org.example.pageobject.utils.EnvConfig.EXPLICITY_TIMEOUT;
 
-public class Constructor {
+public class ConstructorPage {
     private final WebDriver driver;
     private final WebDriverWait wait;
 
-    public Constructor(WebDriver driver) {
+    public ConstructorPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(EXPLICITY_TIMEOUT));
     }

@@ -1,7 +1,7 @@
 package org.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.example.pageobject.Constructor;
+import org.example.pageobject.ConstructorPage;
 import org.junit.rules.ExternalResource;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -52,6 +52,10 @@ public class DriverFactory extends ExternalResource {
                 .setup();
 
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+
         driver = new ChromeDriver(options);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICITY_TIMEOUT));
@@ -70,8 +74,8 @@ public class DriverFactory extends ExternalResource {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICITY_TIMEOUT));
     }
 
-    public Constructor getConstructorPage() {
-        return new Constructor(driver);
+    public ConstructorPage getConstructorPage() {
+        return new ConstructorPage(driver);
     }
 }
 

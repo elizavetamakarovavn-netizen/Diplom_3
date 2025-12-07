@@ -2,11 +2,16 @@ package org.tests;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.example.pageobject.LoginPage;
+import org.example.pageobject.UserSteps;
+import org.example.pageobject.model.User;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import static org.apache.http.HttpStatus.*;
 
 import static org.junit.Assert.*;
 
@@ -15,8 +20,22 @@ public class LoginTests {
     @Rule
     public DriverFactory factory = new DriverFactory();
 
-    String email = "als78@mail.ru";
-    String password = "777777";
+    private UserSteps userSteps;
+    private User testUser;
+
+    @Before
+    public void setUp() {
+
+        userSteps = new UserSteps();
+
+        testUser = new User()
+                .setEmail(RandomStringUtils.randomAlphabetic(10).toLowerCase() + "@mail.ru")
+                .setPassword(RandomStringUtils.randomAlphanumeric(6))
+                .setName(RandomStringUtils.randomAlphabetic(10));
+
+        userSteps.createUser(testUser)
+                .statusCode(SC_OK);
+    }
 
     @Test
     @DisplayName("Вход по кнопке 'Войти в аккаунт' на главной")
@@ -26,8 +45,8 @@ public class LoginTests {
         LoginPage main = factory.getMainPage();
 
         main.clickMainLoginButton();
-        main.setEmail(email);
-        main.setPassword(password);
+        main.setEmail(testUser.getEmail());
+        main.setPassword(testUser.getPassword());
         main.clickLoginButton();
 
         assertTrue("Не открылась главная страница конструктора после входа",
@@ -42,8 +61,8 @@ public class LoginTests {
         LoginPage main = factory.getMainPage();
 
         main.clickPersonalAccountButton();
-        main.setEmail(email);
-        main.setPassword(password);
+        main.setEmail(testUser.getEmail());
+        main.setPassword(testUser.getPassword());
         main.clickLoginButton();
 
         assertTrue("Не открылась главная страница конструктора после входа",
@@ -61,8 +80,8 @@ public class LoginTests {
         main.clickMainLoginButton();
         main.clickRegistrationLink();
         main.clickLoginLink();
-        main.setEmail(email);
-        main.setPassword(password);
+        main.setEmail(testUser.getEmail());
+        main.setPassword(testUser.getPassword());
         main.clickLoginButton();
 
         assertTrue("Не открылась главная страница конструктора после входа",
@@ -80,8 +99,8 @@ public class LoginTests {
         main.clickPersonalAccountButton();
         main.clickRestorePasswordLink();
         main.clickLoginLink();
-        main.setEmail(email);
-        main.setPassword(password);
+        main.setEmail(testUser.getEmail());
+        main.setPassword(testUser.getPassword());
         main.clickLoginButton();
 
         assertTrue("Не открылась главная страница конструктора после входа",
@@ -91,15 +110,11 @@ public class LoginTests {
 
     @After
     public void tearDown() {
-        WebDriver driver = factory.getDriver();
-        LoginPage main = factory.getMainPage();
-        if (driver != null) {
-            try {
-                main.clickPersonalAccountButton();
-                main.clickLogoutButton();
-            } catch (Exception ignore) {
-            }
-            driver.quit();
+
+        if (userSteps.getAccessToken() != null) {
+            userSteps.deleteUser(userSteps.getAccessToken()).statusCode(SC_ACCEPTED);
         }
+        WebDriver driver = factory.getDriver();
+        if (driver != null) driver.quit();
     }
 }

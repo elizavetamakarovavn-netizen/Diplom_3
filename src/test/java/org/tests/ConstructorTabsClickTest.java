@@ -2,7 +2,7 @@ package org.tests;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
-import org.example.pageobject.Constructor;
+import org.example.pageobject.ConstructorPage;
 import org.junit.Rule;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -16,7 +16,7 @@ public class ConstructorTabsClickTest {
     @Description("Проверяет, что после выбора вкладки 'Соусы' пользователь может переключиться на вкладку 'Булки'," +
             " и она становится активной")
     public void testSaucesToBuns() {
-        Constructor constructor = factory.getConstructorPage();
+        ConstructorPage constructor = factory.getConstructorPage();
 
         constructor.clickSaucesTab();
         constructor.waitForActiveTab("Соусы");
@@ -31,7 +31,7 @@ public class ConstructorTabsClickTest {
     @Description("Проверяет, что при выборе вкладки 'Начинки' пользователь может перейти на вкладку 'Булки'," +
             " и она корректно активируется.")
     public void testFillingsToBuns() {
-        Constructor constructor = factory.getConstructorPage();
+        ConstructorPage constructor = factory.getConstructorPage();
 
         constructor.clickFillingsTab();
         constructor.waitForActiveTab("Начинки");
@@ -48,7 +48,7 @@ public class ConstructorTabsClickTest {
             " на вкладку 'Соусы', и она становится активной.")
     public void testBunsToSauces() {
 
-        Constructor constructor = factory.getConstructorPage();
+        ConstructorPage constructor = factory.getConstructorPage();
 
         constructor.clickBunsTab();
         constructor.waitForActiveTab("Булки");
@@ -64,7 +64,7 @@ public class ConstructorTabsClickTest {
             " и активная вкладка обновляется корректно.")
     public void testBunsToFillings() {
 
-        Constructor constructor = factory.getConstructorPage();
+        ConstructorPage constructor = factory.getConstructorPage();
 
         constructor.clickBunsTab();
         constructor.waitForActiveTab("Булки");
